@@ -75,11 +75,24 @@ class LessonContentView(APIView):
             response_content = content.text_content
         else:
             response_content = None
+        completed = False
+        # Sample User
+        user = User.objects.all().first()
+        user_course_enrollment = UserCourseEnrollment.objects.filter(user=user, course=course).first()
+        user_lesson_progress = UserLessonProgress.objects.filter(
+            enrollment__user=user,
+            lesson=lesson
+        ).first()
+        if user_lesson_progress:
+            completed = user_lesson_progress.status == UserLessonProgress.Status.COMPLETED
+        
+
         return Response({
             'lesson_id': lesson.id,
             'lesson_title': lesson.title,
             'content_type': lesson.content_type,
-            'content': response_content
+            'content': response_content,
+            'completed': completed,
         })
     
     def post(self, request, course_id, lesson_id):
