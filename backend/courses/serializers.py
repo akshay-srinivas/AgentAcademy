@@ -52,8 +52,16 @@ class CourseListSerializer(serializers.ModelSerializer):
             'status': {'required': True},
         }
 
+class LessonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lesson
+        fields = ['id', 'title', 'content_type', 'estimated_duration', 'is_mandatory']
+        read_only_fields = ['id']
+
+
 class ModuleSerializer(serializers.ModelSerializer):
     lessons_count = serializers.SerializerMethodField()
+    lessons = LessonSerializer(many=True, read_only=True)
     duration = serializers.SerializerMethodField()
     completed = serializers.SerializerMethodField()
 
@@ -83,7 +91,7 @@ class ModuleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Module
-        fields = ['id', 'title', 'lessons_count', 'duration', 'completed']
+        fields = ['id', 'title', 'lessons_count', 'duration', 'completed', 'lessons']
         read_only_fields = ['id']
         extra_kwargs = {
             'title': {'required': True},
