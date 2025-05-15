@@ -13,6 +13,7 @@ from courses.models import (
     UserLessonProgress,
     UserCourseEnrollment
 )
+from accounts.models import User
 from courses.serializers import (
     CourseCategorySerializer,
     CourseListSerializer,
@@ -91,8 +92,10 @@ class LessonContentView(APIView):
             if len(lessons) < lesson_id:
                 return Response({'error': 'Lesson not found'}, status=404)
             lesson = lessons[lesson_id - 1]
+        # Sample User
+        user = User.objects.all().first()# Replace with actual user from request
         user_course_enrollment, created = UserCourseEnrollment.objects.get_or_create(
-            user=request.user,
+            user=user,
             course=course
         )
             
