@@ -101,6 +101,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
     lessons = serializers.SerializerMethodField()
     image = serializers.ImageField(source='thumbnail', allow_null=True, required=False)
     progress = serializers.SerializerMethodField()
+    duration = serializers.SerializerMethodField()
 
     def get_lessons(self, obj):
         lessons = Lesson.objects.filter(module__course=obj)
@@ -113,10 +114,15 @@ class CourseDetailSerializer(serializers.ModelSerializer):
         if enrollment:
             return enrollment.progress_percentage
         return 0.0
+    
+    def get_duration(self, obj):
+        lessons = Lesson.objects.filter(module__course=obj)
+        total_duration = sum(lesson.estimated_duration for lesson in lessons if lesson.estimated_duration)
+        return total_duration if lessons else 0
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'description', 'lessons', 'modules', 'image', 'progress']
+        fields = ['id', 'title', 'description', 'lessons', 'modules', 'image', 'progress', 'duration']
         read_only_fields = ['id', 'created_at', 'updated_at']
         extra_kwargs = {
             'title': {'required': True},
