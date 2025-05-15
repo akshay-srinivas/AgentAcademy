@@ -20,6 +20,7 @@ class Course(BaseModel):
     title = models.TextField()
     slug = models.SlugField(unique=True)
     category = models.ForeignKey(CourseCategory, on_delete=models.SET_NULL, null=True, related_name='courses')
+    thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True, null=True)
     tags = models.JSONField(default=list, blank=True, help_text="List of tags for the course")
     description = models.TextField()
     status = models.TextField(
