@@ -3,6 +3,10 @@ from rest_framework import serializers
 from courses.models import CourseCategory, Course, Module, Lesson, User, UserCourseEnrollment
 
 class CourseCategorySerializer(serializers.ModelSerializer):
+    courses_count = serializers.SerializerMethodField()
+
+    def get_courses_count(self, obj):
+        return Course.objects.filter(category=obj).count() if obj else 0
     class Meta:
         model = CourseCategory
         fields = '__all__'
