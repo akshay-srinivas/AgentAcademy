@@ -1,4 +1,4 @@
-from django.contrib import admin
+from agentacademy.admin import admin_site
 from courses.models import (
     CourseCategory,
     Course, 
@@ -13,13 +13,13 @@ from courses.models import (
 )
 # Register your models here.
 
-admin.site.register(CourseCategory)
-admin.site.register(Course)
-admin.site.register(Module)
-admin.site.register(Lesson)
-admin.site.register(LessonContent)
-admin.site.register(Quiz)
-admin.site.register(QuizQuestion)
-admin.site.register(QuizAnswer)
-admin.site.register(UserCourseEnrollment)
-admin.site.register(UserLessonProgress)
+admin_site.register(CourseCategory)
+admin_site.register(Course)
+admin_site.register(Module)
+admin_site.register(Lesson)
+admin_site.register(LessonContent)
+admin_site.register(Quiz)
+admin_site.register(QuizQuestion)
+admin_site.register(QuizAnswer)
+admin_site.register(UserCourseEnrollment)
+admin_site.register(UserLessonProgress)

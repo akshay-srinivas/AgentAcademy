@@ -1,0 +1,187 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    .upload-form {
+      margin: 20px 0;
+    }
+    .field-container {
+      margin-bottom: 20px;
+    }
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+    .progress-container {
+      margin-top: 20px;
+      display: none;
+    }
+    .progress-bar {
+      height: 20px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      background-color: #79aec8;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .upload-list {
+      margin-top: 20px;
+    }
+    .file-type-filters {
+      margin: 15px 0;
+    }
+    .file-type-filters .file-type {
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      padding: 5px 10px;
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      cursor: pointer;
+      color: black;
+    }
+    .file-type-filters .file-type.active {
+      background-color: #79aec8;
+      color: white;
+      border-color: #5b80b2;
+    }
+    select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 500px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+  
+  <div class="upload-form">
+    <form method="post" enctype="multipart/form-data" id="file-upload-form">
+      {% csrf_token %}
+      
+      <div class="field-container">
+        <label for="account">Select Account:</label>
+        <select name="account" id="account">
+          <option value="">Select Account</option>
+          {% for account in accounts %}
+            <option value="{{ account.id }}">{{ account.account_reference }}</option>
+          {% endfor %}
+        </select>
+        <div class="help-text">
+          Select which account these files should be associated with. If you don't select an account, 
+          your own account will be used if available.
+        </div>
+      </div>
+      
+      <div class="field-container">
+        <label for="files">Select files to upload:</label>
+        <input type="file" name="files" id="files" multiple>
+        <div class="help-text">
+          You can select multiple files. The system supports various file types including:
+          <ul>
+            <li>Documents: PDF, DOC, DOCX, TXT</li>
+            <li>Videos: MP4, AVI, MOV, etc.</li>
+            <li>Presentations: PPT, PPTX</li>
+            <li>Images: JPG, PNG, GIF</li>
+            <li>Audio: MP3, WAV, etc.</li>
+            <li>Spreadsheets: XLS, XLSX, CSV</li>
+            <li>Archives: ZIP, RAR</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="file-type-filters">
+        <span>Quick filters: </span>
+        <span class="file-type" data-accept="application/pdf">PDFs</span>
+        <span class="file-type" data-accept="video/*">Videos</span>
+        <span class="file-type" data-accept="image/*">Images</span>
+        <span class="file-type" data-accept="audio/*">Audio</span>
+        <span class="file-type" data-accept=".doc,.docx,.txt,.rtf,.odt">Documents</span>
+        <span class="file-type" data-accept=".ppt,.pptx,.key">Presentations</span>
+        <span class="file-type" data-accept=".xls,.xlsx,.csv">Spreadsheets</span>
+        <span class="file-type" data-accept=".zip,.rar,.tar,.gz">Archives</span>
+      </div>
+      
+      <div class="progress-container" id="progress-container">
+        <p>Uploading files... <span id="progress-text">0%</span></p>
+        <div class="progress-bar">
+          <div class="progress" id="progress-bar"></div>
+        </div>
+      </div>
+      
+      <div class="submit-row">
+        <input type="submit" value="Upload Files" class="default">
+      </div>
+    </form>
+  </div>
+  
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // File type filter functionality
+  var fileInput = document.getElementById('files');
+  var fileTypes = document.querySelectorAll('.file-type');
+  
+  fileTypes.forEach(function(type) {
+    type.addEventListener('click', function() {
+      // Reset file input to avoid confusion
+      fileInput.value = '';
+      
+      // Toggle active class
+      this.classList.toggle('active');
+      
+      // Build accept attribute based on active filters
+      var activeFilters = document.querySelectorAll('.file-type.active');
+      if (activeFilters.length > 0) {
+        var acceptValues = [];
+        activeFilters.forEach(function(filter) {
+          acceptValues.push(filter.getAttribute('data-accept'));
+        });
+        fileInput.setAttribute('accept', acceptValues.join(','));
+      } else {
+        // If no filters active, accept all files
+        fileInput.removeAttribute('accept');
+      }
+    });
+  });
+
+  // Form submission handling
+  document.getElementById('file-upload-form').addEventListener('submit', function(e) {
+    if (fileInput.files.length === 0) {
+      e.preventDefault();
+      alert('Please select at least one file to upload');
+      return;
+    }
+    
+    document.getElementById('progress-container').style.display = 'block';
+    
+    // In a real application, you might want to use AJAX to track upload progress
+    // This is a simple simulation for UI feedback
+    var progress = 0;
+    var progressBar = document.getElementById('progress-bar');
+    var progressText = document.getElementById('progress-text');
+    
+    var interval = setInterval(function() {
+      progress += 5;
+      if (progress > 95) {
+        clearInterval(interval);
+      }
+      progressBar.style.width = progress + '%';
+      progressText.textContent = progress + '%';
+    }, 200);
+  });
+});
+</script>
+{% endblock %}
