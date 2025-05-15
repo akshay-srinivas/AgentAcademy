@@ -13,7 +13,7 @@ from data_sources.models import DataSource, DataSourceContent
 class AccountAdmin(admin.ModelAdmin):
     list_display = ['product', 'account_reference', 'created_at']  # Adjust fields as needed
     # list_filter = ['is_active', 'created_at']
-    search_fields = ['name', 'account_reference']
+    search_fields = ['product', 'account_reference']
     actions = ["upload_files_to_google_cloud"]
     
     # Add any other customizations you need
@@ -22,7 +22,7 @@ class AccountAdmin(admin.ModelAdmin):
             'fields': ('product', 'account_reference')
         }),
         ('Status', {
-            'fields': ('is_active',)
+            'fields': ()
         }),
     )
 
@@ -41,7 +41,6 @@ class AccountAdmin(admin.ModelAdmin):
                 #     file_path = files.get_file_path()
                     myfile = client.files.upload(file=files.file.path)
                     print(f"Uploaded file: {myfile}")
-                    break
                 # myfile = client.files.upload(file="/content/Introduction to Channels | HappyFox University.mp4")
             except Exception as e:
                 messages.error(request, f"Error uploading file for {account}: {str(e)}")

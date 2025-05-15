@@ -38,7 +38,7 @@ class DataSource(models.Model):
 class DataSourceContent(models.Model):
     data_source = models.ForeignKey(DataSource, on_delete=models.CASCADE)
     reference_id = models.CharField(max_length=255)
-    title = models.CharField()
+    title = models.CharField(max_length=255)
     file = models.FileField(upload_to='content_files/%Y/%m/%d/', null=True, blank=True)
     raw_content = models.JSONField(default=dict)
     metadata = models.JSONField(default=dict)
