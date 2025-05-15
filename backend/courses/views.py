@@ -58,11 +58,11 @@ class LessonContentView(APIView):
         Get course content
         """
         course = Course.objects.get(id=course_id)
-        lesson = Lesson.objects.filter(module__course=course).order_by('module__order')
-        if lesson.exists():
-            if len(lesson) < lesson_id:
+        lessons = Lesson.objects.filter(module__course=course).order_by('module__order')
+        if lessons.exists():
+            if len(lessons) < lesson_id:
                 return Response({'error': 'Lesson not found'}, status=404)
-            lesson = lesson[lesson_id - 1]
+            lesson = lessons[lesson_id - 1]
         content = LessonContent.objects.get(lesson=lesson)
         if lesson.content_type == Lesson.ContentChoices.TEXT:
             response_content = markdown2.markdown(content.text_content)
