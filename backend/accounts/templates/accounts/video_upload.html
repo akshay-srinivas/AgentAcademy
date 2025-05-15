@@ -1,0 +1,26 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="videos">Select videos to upload (multiple files allowed):</label>
+            <input type="file" name="videos" id="videos" multiple required>
+        </div>
+        <br>
+        <div>
+            <input type="submit" value="Upload Videos">
+        </div>
+    </form>
+
+    <!-- {% if messages %}
+    <ul class="messagelist">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} -->
+</div>
+{% endblock %}

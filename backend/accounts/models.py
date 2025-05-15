@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+HF_PRODUCT_TYPE = (
+    ("happyfox_helpdesk", "HappyFox Helpdesk"),
+    ("happyfox_service_desk", "HappyFox Service Desk"),
+)
+
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -8,6 +13,18 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Account(BaseModel):
+    product = models.TextField(choices=HF_PRODUCT_TYPE)
+    account_reference = models.TextField()
+
+    def __str__(self):
+        return f"{self.product} - {self.account_reference}"
+
+    class Meta:
+        ordering = ["created_at"]
+
 
 # TODO: Implement better Role later
 class Role(models.Model):
