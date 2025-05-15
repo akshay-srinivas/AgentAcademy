@@ -62,7 +62,7 @@ class LessonContentView(APIView):
         if lesson.exists():
             if len(lesson) < lesson_id:
                 return Response({'error': 'Lesson not found'}, status=404)
-            lesson = lesson[lesson_id]
+            lesson = lesson[lesson_id - 1]
         content = LessonContent.objects.get(lesson=lesson)
         if lesson.content_type == Lesson.ContentChoices.TEXT:
             response_content = markdown2.markdown(content.text_content)
