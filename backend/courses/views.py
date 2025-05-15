@@ -9,7 +9,9 @@ from courses.models import (
     CourseCategory,
     Course,
     Lesson,
-    LessonContent
+    LessonContent,
+    UserLessonProgress,
+    UserCourseEnrollment
 )
 from courses.serializers import (
     CourseCategorySerializer,
@@ -78,3 +80,29 @@ class LessonContentView(APIView):
             'content_type': lesson.content_type,
             'content': response_content
         })
+    
+    def post(self, request, course_id, lesson_id):
+        """
+        Mark a lesson as complete
+        """
+        course = Course.objects.get(id=course_id)
+        lessons = Lesson.objects.filter(module__course=course).order_by('module__order')
+        if lessons.exists():
+            if len(lessons) < lesson_id:
+                return Response({'error': 'Lesson not found'}, status=404)
+            lesson = lessons[lesson_id - 1]
+        user_course_enrollment, created = UserCourseEnrollment.objects.get_or_create(
+            user=request.user,
+            course=course
+        )
+            
+        user_lesson_progress, created = UserLessonProgress.objects.get_or_create(
+            enrollment=user_course_enrollment,
+            lesson=lesson
+        )
+        if created:
+            user_lesson_progress.mark_completed()
+            user_lesson_progress.update_enrollment_progress()
+        else:
+            return Response({'message': 'Lesson already marked as complete'})
+        return Response({'message': 'Lesson marked as complete'})   

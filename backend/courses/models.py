@@ -205,7 +205,6 @@ class UserLessonProgress(models.Model):
         mandatory_lessons_count = Lesson.objects.filter(
             module__course=course,
             is_mandatory=True,
-            is_active=True
         ).count()
 
         if mandatory_lessons_count == 0:
