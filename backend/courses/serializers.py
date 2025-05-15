@@ -53,9 +53,18 @@ class CourseListSerializer(serializers.ModelSerializer):
         }
 
 class LessonSerializer(serializers.ModelSerializer):
+    completed = serializers.SerializerMethodField()
+
+    def get_completed(self, obj):
+        user = User.objects.all().first()  # Replace with actual user
+        enrollment = UserCourseEnrollment.objects.filter(user=user, course=obj.module.course).first()
+        user_progress = UserLessonProgress.objects.filter(enrollment=enrollment, lesson=obj).first()
+        if user_progress:
+            return user_progress.status == UserLessonProgress.Status.COMPLETED
+        return False
     class Meta:
         model = Lesson
-        fields = ['id', 'title', 'content_type', 'estimated_duration', 'is_mandatory']
+        fields = ['id', 'title', 'content_type', 'estimated_duration', 'is_mandatory', 'completed']
         read_only_fields = ['id']
 
 
