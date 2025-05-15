@@ -1,3 +1,5 @@
+import markdown2
+
 from django.shortcuts import render
 
 from rest_framework.views import APIView
@@ -5,7 +7,9 @@ from rest_framework.response import Response
 
 from courses.models import (
     CourseCategory,
-    Course
+    Course,
+    Lesson,
+    LessonContent
 )
 from courses.serializers import (
     CourseCategorySerializer,
@@ -46,4 +50,26 @@ class CourseDetailView(APIView):
         """
         course = CourseDetailSerializer(Course.objects.get(id=course_id)).data
         return Response(course)
-    
+
+
+class LessonContentView(APIView):
+    def get(self, request, lesson_id):
+        """
+        Get course content
+        """
+        lesson = Lesson.objects.get(id=lesson_id)
+        content = LessonContent.objects.get(lesson=lesson)
+        if lesson.content_type == Lesson.ContentChoices.TEXT:
+            response_content = markdown2.markdown(content.text_content)
+        elif lesson.content_type == Lesson.ContentChoices.VIDEO:
+            response_content = content.embed_code
+        elif lesson.content_type == Lesson.ContentChoices.QUIZ:
+            response_content = content.text_content
+        else:
+            response_content = None
+        return Response({
+            'lesson_id': lesson.id,
+            'lesson_title': lesson.title,
+            'content_type': lesson.content_type,
+            'content': response_content
+        })
