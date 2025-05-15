@@ -27,7 +27,6 @@ class Course(BaseModel):
         choices=Status.choices,
         default=Status.DRAFT,
     )
-    estimated_duration = models.PositiveIntegerField(help_text="Estimated duration in minutes")
 
 
     def __str__(self):
@@ -59,6 +58,7 @@ class Lesson(BaseModel):
         choices=ContentChoices.choices,
         default=ContentChoices.TEXT,
     )
+    estimated_duration = models.PositiveIntegerField(help_text="Estimated duration in minutes", null=True, blank=True)
     is_mandatory = models.BooleanField(default=True)
     order = models.IntegerField()
 

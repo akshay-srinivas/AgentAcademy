@@ -9,7 +9,8 @@ from courses.models import (
 )
 from courses.serializers import (
     CourseCategorySerializer,
-    CourseSerializer
+    CourseListSerializer,
+    CourseDetailSerializer
 )
 
 # TODO: Implement Views for the following:
@@ -34,5 +35,15 @@ class CourseListView(APIView):
         """
         List all courses in a category
         """
-        courses = CourseSerializer(Course.objects.filter(category_id=category_id), many=True).data
+        courses = CourseListSerializer(Course.objects.filter(category_id=category_id), many=True).data
         return Response(courses)
+    
+
+class CourseDetailView(APIView):
+    def get(self, request, course_id):
+        """
+        Get course details
+        """
+        course = CourseDetailSerializer(Course.objects.get(id=course_id)).data
+        return Response(course)
+    
