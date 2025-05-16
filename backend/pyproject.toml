@@ -15,4 +15,13 @@ dependencies = [
     "pillow>=11.2.1",
     "psycopg>=3.2.9",
     "python-dotenv>=1.1.0",
+    "opensearch-py>=2.8.0",
+    "llama-index>=0.12.36",
+    "llama-index-vector-stores-opensearch>=0.5.3",
+    "llama-index-embeddings-bedrock>=0.4.0",
+    "llama-index-llms-bedrock-converse==0.4.3",
+    "lxml>=5.4.0",
+    "sentence-transformers>=4.1.0",
+    "uvicorn>=0.34.2",
+    "daphne>=4.1.2",
 ]

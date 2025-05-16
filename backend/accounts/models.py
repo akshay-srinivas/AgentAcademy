@@ -25,6 +25,20 @@ class Account(BaseModel):
     class Meta:
         ordering = ["created_at"]
 
+class AccountDetail(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.PROTECT)
+    key = models.TextField()
+    value = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Account Details"
+
+        unique_together = [["account", "key"]]
+
+    def __str__(self):
+        return f"{self.account.product} - {self.account.account_reference} - {self.key}"
 
 # TODO: Implement better Role later
 class Role(models.Model):
