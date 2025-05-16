@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 22 163 74; /* Green-600 */
+    --color-primary-dark: 21 128 61; /* Green-700 */
+    --color-secondary: 17 24 39; /* Gray-900 */
+    --color-secondary-light: 31 41 55; /* Gray-800 */
+  }
+}
+
+body {
+  background-color: #1f2937; /* Tailwind bg-gray-800 */
+  color: #f3f4f6; /* Tailwind text-gray-100 */
+}

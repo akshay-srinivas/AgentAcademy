@@ -20,7 +20,7 @@ export default function Dashboard() {
       <h1 className="text-2xl font-bold">Welcome back, Alex!</h1>
       
       {/* Stats row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 md:grid-cols-3 gap-6">
         <StatCard 
           title="Learning Streak" 
           value="7 days" 
@@ -36,8 +36,8 @@ export default function Dashboard() {
         <StatCard 
           title="Time Spent This Week" 
           value="5.2 hours" 
-          icon={<Clock className="text-blue-500" size={24} />} 
-          color="bg-blue-50" 
+          icon={<Clock className="text-gray-700" size={24} />} 
+          color="bg-gray-50" 
         />
       </div>
       
@@ -46,12 +46,14 @@ export default function Dashboard() {
         <h2 className="text-xl font-semibold mb-4">Continue Learning</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CourseCard 
+            id={1}
             title="Advanced Troubleshooting" 
             progress={65} 
             timeLeft="30 min left" 
             category="Technical Skills" 
           />
           <CourseCard 
+            id={2}
             title="De-escalation Techniques" 
             progress={22} 
             timeLeft="1 hour left" 
@@ -68,7 +70,7 @@ export default function Dashboard() {
             <div key={item.id} className="flex flex-col items-center flex-1">
               <div className="relative w-full">
                 <div 
-                  className="bg-indigo-500 rounded-t-md" 
+                  className="bg-green-500 rounded-t-md" 
                   style={{ height: `${(item.hours / maxHours) * 180}px` }}
                 ></div>
               </div>
