@@ -79,7 +79,7 @@ class LessonSerializer(serializers.ModelSerializer):
         return obj.order if obj.order else None
     class Meta:
         model = Lesson
-        fields = ['title', 'content_type', 'estimated_duration', 'is_mandatory', 'completed']
+        fields = ['id', 'title', 'content_type', 'estimated_duration', 'is_mandatory', 'completed']
 
 
 class ModuleSerializer(serializers.ModelSerializer):
