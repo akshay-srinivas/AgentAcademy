@@ -65,6 +65,7 @@ class CourseListSerializer(serializers.ModelSerializer):
 
 class LessonSerializer(serializers.ModelSerializer):
     completed = serializers.SerializerMethodField()
+    id = serializers.SerializerMethodField()
 
     def get_completed(self, obj):
         user = User.objects.all().first()  # Replace with actual user
@@ -73,10 +74,12 @@ class LessonSerializer(serializers.ModelSerializer):
         if user_progress:
             return user_progress.status == UserLessonProgress.Status.COMPLETED
         return False
+    
+    def get_id(self, obj):
+        return obj.order if obj.order else None
     class Meta:
         model = Lesson
-        fields = ['id', 'title', 'content_type', 'estimated_duration', 'is_mandatory', 'completed']
-        read_only_fields = ['id']
+        fields = ['title', 'content_type', 'estimated_duration', 'is_mandatory', 'completed']
 
 
 class ModuleSerializer(serializers.ModelSerializer):
