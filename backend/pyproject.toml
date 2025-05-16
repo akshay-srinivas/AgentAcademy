@@ -22,4 +22,6 @@ dependencies = [
     "llama-index-llms-bedrock-converse==0.4.3",
     "lxml>=5.4.0",
     "sentence-transformers>=4.1.0",
+    "uvicorn>=0.34.2",
+    "daphne>=4.1.2",
 ]
