@@ -102,11 +102,7 @@ class LessonContentView(APIView):
         Mark a lesson as complete
         """
         course = Course.objects.get(id=course_id)
-        lessons = Lesson.objects.filter(module__course=course).order_by('module__order')
-        if lessons.exists():
-            if len(lessons) < lesson_id:
-                return Response({'error': 'Lesson not found'}, status=404)
-            lesson = lessons[lesson_id - 1]
+        lesson = Lesson.objects.get(id=lesson_id)
         # Sample User
         user = User.objects.all().first()# Replace with actual user from request
         user_course_enrollment, created = UserCourseEnrollment.objects.get_or_create(
