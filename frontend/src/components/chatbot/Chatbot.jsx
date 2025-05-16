@@ -3,10 +3,10 @@ import ChatMessage from "../layout/ChatMessage";
 
 export default function Chatbot({ setShowChatbot }) {
   return (
-    <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
+    <div className="w-80 h-full bg-white border-l border-gray-200 flex flex-col">
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold">AI Learning Assistant</h3>
+          <h3 className="font-semibold">AskGenie</h3>
           <button onClick={() => setShowChatbot(false)} className="text-gray-500 hover:text-gray-700">
             <X size={18} />
           </button>
@@ -31,9 +31,9 @@ export default function Chatbot({ setShowChatbot }) {
           <input
             type="text"
             placeholder="Ask anything..."
-            className="flex-1 py-2 px-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="flex-1 py-2 px-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
           />
-          <button className="bg-indigo-600 text-white p-2 rounded-r-lg">
+          <button className="bg-green-600 text-white p-2 rounded-r-lg">
             <Send size={20} />
           </button>
         </div>

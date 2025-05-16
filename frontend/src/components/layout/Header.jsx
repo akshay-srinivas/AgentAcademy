@@ -22,10 +22,10 @@ export default function Header({ showChatbot, setShowChatbot }) {
         </button>
         <button 
           onClick={() => setShowChatbot(!showChatbot)}
-          className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${showChatbot ? 'bg-indigo-600 text-white' : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'}`}
+          className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg ${showChatbot ? 'bg-green-600 text-white' : 'bg-green-100 text-green-700 hover:bg-green-200'}`}
         >
           <MessageSquare size={16} className="mr-2" />
-          AI Assistant
+          AskGenie
         </button>
       </div>
     </header>

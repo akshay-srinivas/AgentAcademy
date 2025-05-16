@@ -8,7 +8,7 @@ export default function SkillBar({ name, progress }) {
       <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
         <div 
           className={`h-full rounded-full ${
-            progress > 80 ? 'bg-green-500' : progress > 60 ? 'bg-blue-500' : 'bg-amber-500'
+            progress > 80 ? 'bg-green-500' : progress > 60 ? 'bg-green-400' : 'bg-amber-500'
           }`} 
           style={{ width: `${progress}%` }}
         ></div>

@@ -3,11 +3,11 @@ import NavItem from "./NavItem";
 
 export default function Sidebar({ sidebarOpen, toggleSidebar, activePage, setActivePage }) {
   return (
-    <div className={`${sidebarOpen ? 'w-64' : 'w-[60px]'} bg-indigo-600 text-white transition-all duration-300 flex flex-col`}>
+    <div className={`${sidebarOpen ? 'w-64' : 'w-[60px]'} bg-gray-900 text-white transition-all duration-300 flex flex-col`}>
       {/* Logo */}
-      <div className="flex items-center justify-between h-16 px-4 border-b border-indigo-500">
-        {sidebarOpen && <div className="text-xl font-bold">AgentLearn</div>}
-        <button onClick={toggleSidebar} className="p-2 rounded-lg hover:bg-indigo-500 focus:outline-none">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+        {sidebarOpen && <div className="text-xl font-bold">Agent Academy</div>}
+        <button onClick={toggleSidebar} className="p-2 rounded-lg hover:bg-gray-800 focus:outline-none">
           {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -32,7 +32,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar, activePage, setAct
           icon={<BookOpen size={20} />} 
           label="Courses" 
           isActive={activePage === "courses"} 
-          onClick={() => setActivePage("courses")} 
+          onClick={() => setActivePage("courses")}
           sidebarOpen={sidebarOpen} 
         />
         <NavItem 
@@ -45,15 +45,15 @@ export default function Sidebar({ sidebarOpen, toggleSidebar, activePage, setAct
       </nav>
 
       {/* User section */}
-      <div className="p-4 border-t border-indigo-500">
+      <div className="p-4 border-t border-gray-800">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-indigo-400 rounded-full flex items-center justify-center">
+          <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
             <User size={20} />
           </div>
           {sidebarOpen && (
             <div className="flex-1">
               <div className="font-medium">Alex Morgan</div>
-              <div className="text-xs text-indigo-200">Support Agent L2</div>
+              <div className="text-xs text-gray-400">Support Agent L2</div>
             </div>
           )}
         </div>

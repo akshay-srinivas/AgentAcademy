@@ -300,6 +300,7 @@ dependencies = [
     { name = "lxml" },
     { name = "markdown2" },
     { name = "opensearch-py" },
+    { name = "markdown2" },
     { name = "pillow" },
     { name = "psycopg" },
     { name = "python-dotenv" },
@@ -323,6 +324,7 @@ requires-dist = [
     { name = "lxml", specifier = ">=5.4.0" },
     { name = "markdown2", specifier = ">=2.5.3" },
     { name = "opensearch-py", specifier = ">=2.8.0" },
+    { name = "markdown2", specifier = ">=2.5.3" },
     { name = "pillow", specifier = ">=11.2.1" },
     { name = "psycopg", specifier = ">=3.2.9" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
@@ -1310,9 +1312,21 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442, upload-time = "2024-09-15T18:07:37.964Z" },
 ]
 
-[[package]]
 name = "incremental"
 version = "24.7.2"
+
+name = "markdown2"
+version = "2.5.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/44/52/d7dcc6284d59edb8301b8400435fbb4926a9b0f13a12b5cbaf3a4a54bb7b/markdown2-2.5.3.tar.gz", hash = "sha256:4d502953a4633408b0ab3ec503c5d6984d1b14307e32b325ec7d16ea57524895", size = 141676, upload-time = "2025-01-24T21:13:55.044Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/84/37/0a13c83ccf5365b8e08ea572dfbc04b8cb87cadd359b2451a567f5248878/markdown2-2.5.3-py3-none-any.whl", hash = "sha256:a8ebb7e84b8519c37bf7382b3db600f1798a22c245bfd754a1f87ca8d7ea63b3", size = 48550, upload-time = "2025-01-24T21:13:49.937Z" },
+]
+
+[[package]]
+name = "pillow"
+version = "11.2.1"
+
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "setuptools" },
