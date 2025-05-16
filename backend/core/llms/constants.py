@@ -1,0 +1,10 @@
+CLAUDE_V2_MODEL_ID = "anthropic.claude-v2"
+CLAUDE_V2_1_MODEL_ID = "anthropic.claude-v2:1"
+CLAUDE_INSTANT_V1 = "anthropic.claude-instant-v1"
+CLAUDE_V3_SONNET_MODEL_ID = "anthropic.claude-3-sonnet-20240229-v1:0"
+CLAUDE_V3_5_SONNET_MODEL_ID = "anthropic.claude-3-5-sonnet-20240620-v1:0"
+CLAUDE_V3_5_SONNET_MODEL_ID_V2 = "anthropic.claude-3-5-sonnet-20241022-v2:0"
+CLAUDE_V3_HAIKU_MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+CLAUDE_V3_5_HAIKU_MODEL_ID = "anthropic.claude-3-5-haiku-20241022-v1:0"
+NOVA_PRO_MODEL_ID = "us.amazon.nova-pro-v1:0"
+DEFAULT_CLAUDE_MAX_TOKENS_TO_SAMPLE = 6000

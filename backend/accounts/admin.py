@@ -1,5 +1,5 @@
 from agentacademy.admin import admin_site
-from accounts.models import Account, Role, User
+from accounts.models import Account, Role, User, AccountDetail
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.utils import timezone
@@ -8,13 +8,14 @@ from google import genai
 # import google.generativeai as genai
 from django.conf import settings
 from data_sources.models import DataSource, DataSourceContent
+from data_sources.ingestion import run_ingestion_pipeline
 
 
 class AccountAdmin(admin.ModelAdmin):
     list_display = ['product', 'account_reference', 'created_at']  # Adjust fields as needed
     # list_filter = ['is_active', 'created_at']
     search_fields = ['product', 'account_reference']
-    actions = ["upload_files_to_google_cloud"]
+    actions = ["upload_files_to_google_cloud","ingest_data_sources"]
     
     # Add any other customizations you need
     fieldsets = (
@@ -45,21 +46,17 @@ class AccountAdmin(admin.ModelAdmin):
             except Exception as e:
                 messages.error(request, f"Error uploading file for {account}: {str(e)}")
         
-        # if success_count > 0:
-        #     messages.success(request, f"Uploaded files for {success_count} account(s).")
-    def start_data_source_processing(modeladmin, request, queryset):
-        # Logic to reset API keys for selected accounts        
+    @admin.action(description="Ingest Data Sources")
+    def ingest_data_sources(self, request, queryset):
+        # Logic to ingest data sources
         for account in queryset:
             try:
-                client = genai.Client(api_key=settings.GEMINI_API)
-                myfile = client.files.upload(file="/content/Introduction to Channels | HappyFox University.mp4")
+                run_ingestion_pipeline(account)
             except Exception as e:
-                messages.error(request, f"Error resetting API key for {account}: {str(e)}")
-        
-        # if success_count > 0:
-        #     messages.success(request, f"Reset API keys for {success_count} account(s).")
+                messages.error(request, f"Error uploading file for {account}: {str(e)}")
 
 # Register your models here.
 admin_site.register(Account, AccountAdmin)
+admin_site.register(AccountDetail)
 admin_site.register(Role)
 admin_site.register(User)
