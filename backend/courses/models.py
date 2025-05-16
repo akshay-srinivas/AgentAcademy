@@ -36,7 +36,7 @@ class Course(BaseModel):
 class Module(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
     title = models.TextField()
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     order = models.IntegerField()
 
     class Meta:
@@ -117,7 +117,7 @@ class QuizQuestion(models.Model):
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
     
-    additional_data = models.JSONField(default=dict, blank=True)
+    additional_data = models.JSONField(default=dict, null=True, blank=True)
     
     class Meta:
         ordering = ['quiz', 'order']
@@ -134,6 +134,7 @@ class QuizAnswer(models.Model):
     
     class Meta:
         ordering = ['question', 'order']
+        unique_together = ('question', 'order')
     
     def __str__(self):
         return f"Answer: {self.answer_text}"
@@ -221,6 +222,28 @@ class UserLessonProgress(models.Model):
             enrollment.mark_completed()
         else:
             enrollment.save(update_fields=['progress_percentage'])
+
+class UserQuizAttempt(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='quiz_attempts')
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='attempts')
+    score = models.PositiveIntegerField(default=0, validators=[
+        MinValueValidator(0), MaxValueValidator(100)
+    ])
+    attempt_date = models.DateTimeField(auto_now_add=True)
+    is_passed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} attempt on {self.quiz.title}"
+    
+
+class UserQuizQuestionAnswer(models.Model):
+    attempt = models.ForeignKey(UserQuizAttempt, on_delete=models.CASCADE, related_name='question_answers')
+    question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE, related_name='user_answers')
+    selected_answer = models.ForeignKey(QuizAnswer, on_delete=models.CASCADE, related_name='user_answers')
+    is_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Answer for {self.question.question_text} by {self.attempt.user.username}"
 
 
 # TODO: Implement a model for user quiz attempts

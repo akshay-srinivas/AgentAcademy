@@ -11,13 +11,15 @@ from courses.models import (
     Lesson,
     LessonContent,
     UserLessonProgress,
-    UserCourseEnrollment
+    UserCourseEnrollment,
+    Quiz
 )
 from accounts.models import User
 from courses.serializers import (
     CourseCategorySerializer,
     CourseListSerializer,
-    CourseDetailSerializer
+    CourseDetailSerializer,
+    QuizSerializer
 )
 
 # TODO: Implement Views for the following:
@@ -122,3 +124,22 @@ class LessonContentView(APIView):
         else:
             return Response({'message': 'Lesson already marked as complete'})
         return Response({'message': 'Lesson marked as complete'})   
+
+
+class GetQuizView(APIView):
+    def get(self, request, course_id, lesson_id):
+        """
+        Get quiz for a lesson
+        """
+        course = Course.objects.get(id=course_id)
+        lessons = Lesson.objects.filter(module__course=course).order_by('module__order')
+        if lessons.exists():
+            if len(lessons) < lesson_id:
+                return Response({'error': 'Lesson not found'}, status=404)
+            lesson = lessons[lesson_id - 1]
+        print(lesson)
+        try:
+            quiz = Quiz.objects.get(lesson=lesson)
+            return Response(QuizSerializer(quiz).data)
+        except Quiz.DoesNotExist:
+            return Response({'error': 'No quiz available for this lesson'}, status=404)

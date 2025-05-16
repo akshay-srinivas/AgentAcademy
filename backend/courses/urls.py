@@ -4,6 +4,7 @@ from courses.views import (
     CourseListView,
     CourseDetailView,
     LessonContentView,
+    GetQuizView,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('courses/<int:category_id>/', CourseListView.as_view(), name='course-categories'),
     path('course/<str:course_id>/', CourseDetailView.as_view(), name='course-detail'),
     path('course/<str:course_id>/lesson/<int:lesson_id>/', LessonContentView.as_view(), name='lesson-content'),
+    path('course/<str:course_id>/lesson/<int:lesson_id>/quiz/', GetQuizView.as_view(), name='lesson-quiz'),
 ]

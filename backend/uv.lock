@@ -53,10 +53,10 @@ dependencies = [
     { name = "django", version = "5.2.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "django-cors-headers" },
     { name = "djangorestframework" },
-    { name = "markdown2" },
     { name = "google" },
     { name = "google-genai" },
     { name = "google-generativeai" },
+    { name = "markdown2" },
     { name = "pillow" },
     { name = "psycopg" },
     { name = "python-dotenv" },
@@ -67,10 +67,10 @@ requires-dist = [
     { name = "django", specifier = ">=4.2.21" },
     { name = "django-cors-headers", specifier = ">=4.7.0" },
     { name = "djangorestframework", specifier = ">=3.16.0" },
-    { name = "markdown2", specifier = ">=2.5.3" },
     { name = "google", specifier = ">=3.0.0" },
     { name = "google-genai", specifier = ">=1.15.0" },
     { name = "google-generativeai", specifier = ">=0.8.5" },
+    { name = "markdown2", specifier = ">=2.5.3" },
     { name = "pillow", specifier = ">=11.2.1" },
     { name = "psycopg", specifier = ">=3.2.9" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
@@ -251,15 +251,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/7d/97/112c5a72e6917949b6d8a18ad6c6e72c46da4290c8f36ee5f1c1dcbc9901/djangorestframework-3.16.0.tar.gz", hash = "sha256:f022ff46613584de994c0c6a4aebbace5fd700555fbe9d33b865ebf173eba6c9", size = 1068408, upload-time = "2025-03-28T14:18:42.065Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/eb/3e/2448e93f4f87fc9a9f35e73e3c05669e0edd0c2526834686e949bb1fd303/djangorestframework-3.16.0-py3-none-any.whl", hash = "sha256:bea7e9f6b96a8584c5224bfb2e4348dfb3f8b5e34edbecb98da258e892089361", size = 1067305, upload-time = "2025-03-28T14:18:39.489Z" },
-]
-
-[[package]]
-name = "markdown2"
-version = "2.5.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/44/52/d7dcc6284d59edb8301b8400435fbb4926a9b0f13a12b5cbaf3a4a54bb7b/markdown2-2.5.3.tar.gz", hash = "sha256:4d502953a4633408b0ab3ec503c5d6984d1b14307e32b325ec7d16ea57524895", size = 141676, upload-time = "2025-01-24T21:13:55.044Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/84/37/0a13c83ccf5365b8e08ea572dfbc04b8cb87cadd359b2451a567f5248878/markdown2-2.5.3-py3-none-any.whl", hash = "sha256:a8ebb7e84b8519c37bf7382b3db600f1798a22c245bfd754a1f87ca8d7ea63b3", size = 48550, upload-time = "2025-01-24T21:13:49.937Z" },
 ]
 
 [[package]]
@@ -542,6 +533,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7590aa73f1f1d3fa9a380e654b86af429e0934a32f7d/idna-3.10.tar.gz", hash = "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9", size = 190490, upload-time = "2024-09-15T18:07:39.745Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442, upload-time = "2024-09-15T18:07:37.964Z" },
+]
+
+[[package]]
+name = "markdown2"
+version = "2.5.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/44/52/d7dcc6284d59edb8301b8400435fbb4926a9b0f13a12b5cbaf3a4a54bb7b/markdown2-2.5.3.tar.gz", hash = "sha256:4d502953a4633408b0ab3ec503c5d6984d1b14307e32b325ec7d16ea57524895", size = 141676, upload-time = "2025-01-24T21:13:55.044Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/84/37/0a13c83ccf5365b8e08ea572dfbc04b8cb87cadd359b2451a567f5248878/markdown2-2.5.3-py3-none-any.whl", hash = "sha256:a8ebb7e84b8519c37bf7382b3db600f1798a22c245bfd754a1f87ca8d7ea63b3", size = 48550, upload-time = "2025-01-24T21:13:49.937Z" },
 ]
 
 [[package]]

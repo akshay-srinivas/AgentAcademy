@@ -1,6 +1,17 @@
 from rest_framework import serializers
 
-from courses.models import CourseCategory, Course, Module, Lesson, User, UserCourseEnrollment, UserLessonProgress
+from courses.models import (
+    CourseCategory, 
+    Course, 
+    Module, 
+    Lesson, 
+    User, 
+    UserCourseEnrollment, 
+    UserLessonProgress,
+    Quiz, 
+    QuizQuestion,
+    QuizAnswer
+)
 
 class CourseCategorySerializer(serializers.ModelSerializer):
     courses_count = serializers.SerializerMethodField()
@@ -137,4 +148,38 @@ class CourseDetailSerializer(serializers.ModelSerializer):
             'title': {'required': True},
             'description': {'required': True},
             'status': {'required': True},
+        }
+
+class QuizAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuizAnswer
+        fields = ['id', 'answer_text', 'is_correct']
+        read_only_fields = ['id']
+        extra_kwargs = {
+            'answer_text': {'required': True},
+            'is_correct': {'required': True},
+        }
+
+
+class QuizQuestionSerializer(serializers.ModelSerializer):
+    answers = QuizAnswerSerializer(many=True, required=True)
+
+    class Meta:
+        model = QuizQuestion
+        fields = ['id', 'question_text', 'answers']
+        read_only_fields = ['id']
+        extra_kwargs = {
+            'question_text': {'required': True},
+            'answers': {'required': True},
+        }
+
+class QuizSerializer(serializers.ModelSerializer):
+    questions = QuizQuestionSerializer(many=True, required=True)
+    class Meta:
+        model = Quiz
+        fields = ['id', 'title', 'questions']
+        read_only_fields = ['id']
+        extra_kwargs = {
+            'title': {'required': True},
+            'questions': {'required': True},
         }
