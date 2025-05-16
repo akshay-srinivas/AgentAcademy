@@ -299,10 +299,11 @@ dependencies = [
     { name = "llama-index-vector-stores-opensearch" },
     { name = "lxml" },
     { name = "markdown2" },
+    { name = "openai" },
     { name = "opensearch-py" },
-    { name = "markdown2" },
     { name = "pillow" },
     { name = "psycopg" },
+    { name = "pydub" },
     { name = "python-dotenv" },
     { name = "sentence-transformers" },
     { name = "uvicorn" },
@@ -323,10 +324,11 @@ requires-dist = [
     { name = "llama-index-vector-stores-opensearch", specifier = ">=0.5.3" },
     { name = "lxml", specifier = ">=5.4.0" },
     { name = "markdown2", specifier = ">=2.5.3" },
+    { name = "openai", specifier = ">=1.78.1" },
     { name = "opensearch-py", specifier = ">=2.8.0" },
-    { name = "markdown2", specifier = ">=2.5.3" },
     { name = "pillow", specifier = ">=11.2.1" },
     { name = "psycopg", specifier = ">=3.2.9" },
+    { name = "pydub", specifier = ">=0.25.1" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "sentence-transformers", specifier = ">=4.1.0" },
     { name = "uvicorn", specifier = ">=0.34.2" },
@@ -1312,21 +1314,9 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442, upload-time = "2024-09-15T18:07:37.964Z" },
 ]
 
+[[package]]
 name = "incremental"
 version = "24.7.2"
-
-name = "markdown2"
-version = "2.5.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/44/52/d7dcc6284d59edb8301b8400435fbb4926a9b0f13a12b5cbaf3a4a54bb7b/markdown2-2.5.3.tar.gz", hash = "sha256:4d502953a4633408b0ab3ec503c5d6984d1b14307e32b325ec7d16ea57524895", size = 141676, upload-time = "2025-01-24T21:13:55.044Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/84/37/0a13c83ccf5365b8e08ea572dfbc04b8cb87cadd359b2451a567f5248878/markdown2-2.5.3-py3-none-any.whl", hash = "sha256:a8ebb7e84b8519c37bf7382b3db600f1798a22c245bfd754a1f87ca8d7ea63b3", size = 48550, upload-time = "2025-01-24T21:13:49.937Z" },
-]
-
-[[package]]
-name = "pillow"
-version = "11.2.1"
-
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "setuptools" },
@@ -1562,15 +1552,16 @@ wheels = [
 
 [[package]]
 name = "llama-index-embeddings-bedrock"
-version = "0.4.0"
+version = "0.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "aioboto3" },
     { name = "boto3" },
     { name = "llama-index-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/49/b3/d8ea54e4b101821a29e212d1eef5279a88c4e823f81372504a24137ec6bb/llama_index_embeddings_bedrock-0.4.0.tar.gz", hash = "sha256:a8f823c9da60f0c842e5a9743f80edfe6b0abd2dcf97389913e0507affeb95a9", size = 5182, upload-time = "2024-11-17T23:39:59.205Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9f/ca/7ce72aa0709b6b1f29c7773b6bb2d30199e82a74cac952cf43c6a21eb705/llama_index_embeddings_bedrock-0.5.0.tar.gz", hash = "sha256:3bb5ab9a03102f45a51e3fdced5b8f9c50a332d7008fe3c609123003f8ef1043", size = 5282, upload-time = "2025-01-24T16:27:18.121Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/94/98/6b8bb7570e794a8d5283c5cc8fd160536bf7fc6ee6262f91fe7cdec5392f/llama_index_embeddings_bedrock-0.4.0-py3-none-any.whl", hash = "sha256:aa7502ffcbb0619ae1e91ec850114b8ee54ca85bdba93cbd90b08d8312034f50", size = 5451, upload-time = "2024-11-17T23:39:58.374Z" },
+    { url = "https://files.pythonhosted.org/packages/73/76/97059c5ee9f3c63ce197d3fb798715bc0b5b27642300bc76da33fadeb84a/llama_index_embeddings_bedrock-0.5.0-py3-none-any.whl", hash = "sha256:ceb896f670484e3b703b2322bd24206d74d40e28825915fdf6c3b5963bb78801", size = 5642, upload-time = "2025-01-24T16:27:15.807Z" },
 ]
 
 [[package]]
@@ -2850,6 +2841,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/1a/1a/abbd63d47e1d9b0d632fee6bb15785d0889c8a6e0a6c3b5a8e28ac1ec5d2/pydantic_core-2.33.2-pp39-pypy39_pp73-musllinux_1_1_armv7l.whl", hash = "sha256:3abcd9392a36025e3bd55f9bd38d908bd17962cc49bc6da8e7e96285336e2bca", size = 2237859, upload-time = "2025-04-23T18:33:45.56Z" },
     { url = "https://files.pythonhosted.org/packages/80/1c/fa883643429908b1c90598fd2642af8839efd1d835b65af1f75fba4d94fe/pydantic_core-2.33.2-pp39-pypy39_pp73-musllinux_1_1_x86_64.whl", hash = "sha256:3a1c81334778f9e3af2f8aeb7a960736e5cab1dfebfb26aabca09afd2906c039", size = 2239059, upload-time = "2025-04-23T18:33:47.735Z" },
     { url = "https://files.pythonhosted.org/packages/d4/29/3cade8a924a61f60ccfa10842f75eb12787e1440e2b8660ceffeb26685e7/pydantic_core-2.33.2-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:2807668ba86cb38c6817ad9bc66215ab8584d1d304030ce4f0887336f28a5e27", size = 2066661, upload-time = "2025-04-23T18:33:49.995Z" },
+]
+
+[[package]]
+name = "pydub"
+version = "0.25.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/fe/9a/e6bca0eed82db26562c73b5076539a4a08d3cffd19c3cc5913a3e61145fd/pydub-0.25.1.tar.gz", hash = "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f", size = 38326, upload-time = "2021-03-10T02:09:54.659Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a6/53/d78dc063216e62fc55f6b2eebb447f6a4b0a59f55c8406376f76bf959b08/pydub-0.25.1-py2.py3-none-any.whl", hash = "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6", size = 32327, upload-time = "2021-03-10T02:09:53.503Z" },
 ]
 
 [[package]]
