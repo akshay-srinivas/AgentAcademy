@@ -501,7 +501,7 @@ What you learned in this chapter is simple self-attention. However, we can do mu
 In this post, you learned what attention mechanisms are. They are a very useful method that helps give words the context coming from the sentence where they belong. In this way, the model has less chance of getting confused by words taken out of context. LLMs make great use of attention mechanisms in order to understand text.
 """},
     {
-        "lesson_title" : "What is the Transformer Architecture?",
+        "lesson_title" : "What Are Transformer Models and How Do They Work?",
         "text_content" : """
 Transformer models are one of the most exciting new developments in machine learning. They were introduced in the paper Attention is All You Need. Transformers can be used to write stories, essays, poems, answer questions, translate between languages, chat with humans, and they can even pass exams that are hard for humans! But what are they? You’ll be happy to know that the architecture of transformer models is not that complex, it simply is a concatenation of some very useful components, each of which has its own function. In this chapter, you will learn all of these components.
 
