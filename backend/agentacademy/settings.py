@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'courses',
-    'data_sources'
+    'data_sources',
+    'chatbot',
+    
 ]
 
 MIDDLEWARE = [
@@ -156,3 +158,5 @@ OPENSEARCH_HOST = os.getenv("OPENSEARCH_HOST", "localhost")
 OPENSEARCH_PORT = os.getenv("OPENSEARCH_PORT", "9200")
 OPENSEARCH_REGION = os.getenv("OPENSEARCH_REGION", "")
 OPENSEARCH_AUTH = os.getenv("OPENSEARCH_AUTH", None)
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

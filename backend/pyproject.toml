@@ -24,4 +24,6 @@ dependencies = [
     "sentence-transformers>=4.1.0",
     "uvicorn>=0.34.2",
     "daphne>=4.1.2",
+    "openai>=1.78.1",
+    "pydub>=0.25.1",
 ]
