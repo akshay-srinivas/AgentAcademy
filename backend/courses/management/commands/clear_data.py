@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from courses.models import Course, Module, Lesson, LessonContent, Quiz, QuizQuestion, QuizAnswer
+from courses.models import Course, Module, Lesson, LessonContent, Quiz, QuizQuestion, QuizAnswer, UserCourseEnrollment, UserLessonProgress
 
 class Command(BaseCommand):
     help = "Clear all data from the database"
@@ -14,4 +14,6 @@ class Command(BaseCommand):
         Quiz.objects.all().delete()
         QuizQuestion.objects.all().delete()
         QuizAnswer.objects.all().delete()
+        UserLessonProgress.objects.all().delete()
+        UserCourseEnrollment.objects.all().delete()
         self.stdout.write(self.style.SUCCESS("All data cleared successfully."))
